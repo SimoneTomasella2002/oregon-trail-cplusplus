@@ -6,6 +6,7 @@ void instructions() {
     while (choice != "YES" && choice != "NO") {
         std::cout << "Do you need instructions? (YES/NO): ";
         std::cin >> choice;
+        transform(choice.begin(), choice.end(), choice.begin(), ::toupper);
     }
 
     if (choice == "YES") {
@@ -35,13 +36,18 @@ void instructions() {
     }
 }
 
-void difficultyShootingChoice() {
-    std::string choice = "";
-    
+void difficultyShootingChoice(settings& Settings) {
+    std::string inputString = "";
+    int choice = 0;
+
     std::cout << "How good a shot are you with your rifle?\n\t- (1) Ace marksman \n\t- (2) Good shot \n\t- (3) Fair to middlin'\n\t- (4) Need more practice\n\t- (5) Shaky knees\n";
     
-    if (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5") {
+    while (choice < 1 || choice > 5) {
         std::cout << "Enter one of the above: the better you claim you are, the faster you'll have to be with your gun to be successful: ";
-        std::cin >> choice;
+        std::cin >> inputString;
+        if (isdigit(inputString[0]))
+            choice = stoi(inputString.substr(0,1));
     }
+
+    Settings.difficultyChoice = choice;
 }

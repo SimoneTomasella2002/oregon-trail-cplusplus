@@ -2,7 +2,8 @@
 
 int main() {
 
-    instructions();
-    difficultyShootingChoice();
+    settings Settings;
 
+    instructions();
+    difficultyShootingChoice(Settings);
 }
