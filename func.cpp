@@ -51,3 +51,62 @@ void difficultyShootingChoice(settings& Settings) {
 
     Settings.difficultyChoice = choice;
 }
+
+void purchases(playerData& PlayerData) {
+    int oxenSpending = 0;
+    int foodSpending = 0;
+    int ammunitionSpending = 0;
+    int clothingSpending = 0;
+    int miscellaneusSuppliesSpending = 0;
+
+    int dollarsLeft = -1;
+
+    while (dollarsLeft < 0) {
+        while(oxenSpending < 200 || oxenSpending > 300) {
+            std::cout << "How much do you want to spend on your oxen team?\n";
+            std::cin >> oxenSpending;
+
+            if (oxenSpending < 200) std::cout << "Not enough\n";
+            else if (oxenSpending > 300) std::cout << "Too much\n";
+        }
+
+        while(foodSpending <= 0) {
+            std::cout << "How much do you want to spend on food?\n";
+            std::cin >> foodSpending;
+
+            if (foodSpending <= 0) std::cout << "Impossible\n";
+        }
+
+        while(ammunitionSpending <= 0) {
+            std::cout << "How much do you want to spend on ammunition?\n";
+            std::cin >> ammunitionSpending;
+
+            if (ammunitionSpending < 0) std::cout << "Impossible\n";
+        }
+
+        while(clothingSpending <= 0) {
+            std::cout << "How much do you want to spend on clothing?\n";
+            std::cin >> clothingSpending;
+
+            if (clothingSpending < 0) std::cout << "Impossible\n";
+        }
+
+        while(miscellaneusSuppliesSpending <= 0) {
+            std::cout << "How much do you want to spend on clothing?\n";
+            std::cin >> miscellaneusSuppliesSpending;
+
+            if (miscellaneusSuppliesSpending < 0) std::cout << "Impossible\n";
+        }
+
+        dollarsLeft = 700-oxenSpending-foodSpending-ammunitionSpending-clothingSpending-miscellaneusSuppliesSpending; 
+
+        if(dollarsLeft < 0) {
+            std::cout << "You overspent-- You only had $700 to spend. Buy again.\n";
+            dollarsLeft = -1;
+        }
+    }
+
+    std::cout << "After all your purchases, you now have " << dollarsLeft << " dollars left\n";
+
+    PlayerData.dollarsLeft = dollarsLeft;
+}

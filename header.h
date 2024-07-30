@@ -8,8 +8,13 @@ struct {
     int difficultyChoice;
 } typedef settings;
 
+struct {
+    int dollarsLeft;
+} typedef playerData;
+
 
 void instructions();
-void difficultyShootingChoice(settings& settings);
+void difficultyShootingChoice(settings&);
+void purchases(playerData&);
 
 #endif
